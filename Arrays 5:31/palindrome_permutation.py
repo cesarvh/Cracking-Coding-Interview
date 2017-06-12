@@ -26,9 +26,8 @@ def solution(s):
 	for char in char_to_count:
 		if char_to_count[char] % 2 != 0:
 			num_odd += 1
-
-	if num_odd > 1:
-		return False
+		if num_odd > 1:
+			return False
 	return True
 
 
