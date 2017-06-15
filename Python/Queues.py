@@ -29,8 +29,6 @@ class QueueOfStacks(object):
             for item in self.stack2:
                 self.stack1.append(item)
             self.stack2 = []
-        
-        # reversed!
 
     def pop(self):
         """
@@ -72,29 +70,58 @@ class LinkedListQueue():
         self.tail = None
     
     def enqueue(self, value):
-        pass
+        new_node = Node(value)
+        if self.empty():
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+        self.size += 1
     
     def dequeue(self):
-        pass
+        item = self.head.value
+        self.head = self.head.next
+        self.size -= 1
+        return item
     
     def empty(self):
         return self.size == 0
     
+    def print_queue(self):
+        pointer = self.head
+        while pointer is not None:
+            print (pointer.value)
+            pointer = pointer.next
+    
 
 class ArrayQueue():
 
-    def __init__(self):
+    def __init__(self, limit):
         self.size = 0
         self.items = []
-    
+        self.limit = limit
+
     def enqueue(self, item):
-        pass
+        if self.full():
+            raise Exception("The queue is full")
+        else:
+            self.size += 1
+            self.items.append(item)
+
     
     def dequeue(self):
-        pass
+        item = self.items[0]
+        del self.items[0]
+        return item
     
     def empty(self):
-        pass 
+        return self.size == 0
     
     def full(self):
-        pass 
+        return self.size == self.limit
+    
+    def print_queue(self):
+        for i in range(self.size):
+            print self.items[i]
+
